@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Submission</title>
+</head>
+<body>
+
+    <h2>Use GET request, processed by process-get.php</h2>
+    <form action="process-get.php" method="get">
+        <label for="name-get">Your Name:</label>
+        <input type="text" id="name-get" name="name"><br><br>
+
+        <label>Your Favorite Language:</label>
+        <input type="radio" name="language" value="HTML"> HTML
+        <input type="radio" name="language" value="JS"> JS
+        <input type="radio" name="language" value="PHP"> PHP<br><br>
+
+        <input type="submit" value="제출">
+    </form>
+
+    <hr>
+
+    <h2>Use POST request, processed by process-post.php</h2>
+    <form action="process-post.php" method="post">
+        <label for="name-post">Your Name:</label>
+        <input type="text" id="name-post" name="name"><br><br>
+
+        <label>Your Favorite Language:</label>
+        <input type="radio" name="language" value="HTML"> HTML
+        <input type="radio" name="language" value="JS"> JS
+        <input type="radio" name="language" value="PHP"> PHP<br><br>
+
+        <input type="submit" value="제출">
+    </form>
+
+</body>
+</html>

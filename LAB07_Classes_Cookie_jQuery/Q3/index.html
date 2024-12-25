@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<!-- 
+		You can get the jquery library from https://code.jquery.com/ 
+		- Include the jQuery library (any version should be okay)
+		
+		And then, complete the code below
+	-->
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Project jQuery</title>
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+
+<body>
+    <div id="upper">UPPER</div>
+	<div id="lower">LOWER</div>
+	<script>
+		$('#upper').html('checked');
+		$('#lower').css('color','blue');
+		$('#lower').before("<div>MIDDLE</div>");
+		$('#lower').after("<hr>");
+
+		$(document).ready(function() {
+			$('#left-btn').click(function() {
+				alert('Left Button clicked!');
+			});
+
+			$('#right-btn').click(function() {
+				alert('Right Button clicked!');
+			});
+		});
+	</script>
+	
+	<input type="button" id="left-btn" value="Left Button" />
+	<input type="button" id="right-btn" value="Right Button" />
+
+</body>
+</html>

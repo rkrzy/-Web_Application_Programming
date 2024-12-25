@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Kakao Vclip Search Example</title>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+<form>
+  Enter a search keyword : 
+  <input type="text" id="userInputAreaKey" size="20" value="Korea"><br>
+  Enter a number of items to display:
+  <input type="text" id="userInputAreaMany" size="5" value="5"><br>
+  <input type="button" onclick="run()" value="Run"> 
+</form>
+<hr>
+<div id="postingArea"></div>
+<script>
+function run(){
+	var userInput1 = document.getElementById("userInputAreaKey").value.trim();
+	var userInput2 = parseInt(document.getElementById("userInputAreaMany").value.trim());
+	
+	if(isNaN(userInput2) || userInput2 <= 0) {
+		userInput2 = 5; 
+	}
+
+	var settings = {
+	  "url": "https://dapi.kakao.com/v2/search/vclip?query=" + encodeURIComponent(userInput1) + "&size=" + userInput2,
+	  "method": "GET",
+	  "timeout": 0,
+	  "headers": {
+	    "Authorization": "KakaoAK 4fab0862c7e31d886efb8ecc5386fd46" 
+	  },
+	};
+
+	$.ajax(settings).done(function (response) {
+	  console.log(response);
+
+	  var msg = "<table border='1'  cellpadding='5'>";
+	  msg += "<tr><th>No.</th><th>Thumbnail</th><th>Title</th><th>Link</th></tr>";
+
+	  for(var i=0; i<response.documents.length; i++){
+	    var doc = response.documents[i];
+	    msg += "<tr>";
+	    msg += "<td>" + i + "</td>";
+	    msg += "<td><img src='"+doc.thumbnail+"' alt='thumbnail' width='100'></td>";
+	    msg += "<td>" + doc.title + "</td>";
+	    msg += "<td><a href='"+doc.url+"' target='_blank'>CLICK</a></td>";
+	    msg += "</tr>";
+	  }
+
+	  msg += "</table>";
+
+	  document.getElementById("postingArea").innerHTML = msg;
+	});
+	
+	document.getElementById("postingArea").innerHTML = "Loading...";
+}
+</script>
+</body>
+</html>

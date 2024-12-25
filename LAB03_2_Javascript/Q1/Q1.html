@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- write your code here to load external JS code, ex1.js -->
+    <script src="ex1.js"></script>
+    <script type="text/javascript">
+		// write your code here 
+		// to add <title> and <h1> text on page loading
+        window.onload = function(){
+            var h1 = document.createElement("h1");
+            h1.innerHTML = "Welcome Home";
+            document.body.insertBefore(h1, document.body.firstChild); 
+        }
+	</script>
+	
+</head>
+<body >
+    <h3>Try put your mouse below</h3>
+    <hr />
+    <div id="content" onmouseover="highlight()" onmouseout="off()"> <!-- rewrite this line to handle mouse cursor event -->
+        This background will turn yellow when you put your mouse in here.
+    </div>
+	<hr /> 
+</body>
+</html>
+
+

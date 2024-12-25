@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>예제</title>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+var settings = {
+  "url": "http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getUltraSrtNcst?serviceKey=PrnSQEwvDNhQ2aMfMxnBu8xtjWVH%2B%2Buwz6gh62U3YQ1csYdzTqetVe%2B%2BiJ5ael9GhmVpv%2FXFxZ4PBG3eGfOq7g%3D%3D&numOfRows=4&pageNo=1&dataType=XML&base_date=20241211&base_time=0600&nx=55&ny=127",
+  "method": "GET",
+  "timeout": 0,
+};
+
+$(document).ready(function(){
+  document.write("<table border='1'>");
+  document.write("<tr><th>Date</th><th>Time</th><th>X</th><th>Y</th><th>category</th><th>Observed Value</th></tr>");
+  document.write("</table>");
+  $.ajax(settings).done(function (response) {
+    // 응답이 오면 테이블을 찾는다
+    var $table = $("table");
+    $(response).find("item").each(function(){
+      var baseDate = $(this).find("baseDate").text();
+      var baseTime = $(this).find("baseTime").text();
+      var nx = $(this).find("nx").text();
+      var ny = $(this).find("ny").text();
+      var category = $(this).find("category").text();
+      var obsrValue = $(this).find("obsrValue").text();
+
+      // AJAX 데이터 추가 (document.write 대신 append)
+      $table.append(
+        "<tr>"+
+        "<td>"+baseDate+"</td>"+
+        "<td>"+baseTime+"</td>"+
+        "<td>"+nx+"</td>"+
+        "<td>"+ny+"</td>"+
+        "<td>"+category+"</td>"+
+        "<td>"+obsrValue+"</td>"+
+        "</tr>"
+      );
+    });
+  });
+});
+</script>
+</head>
+<body>
+</body>
+</html>
